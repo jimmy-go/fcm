@@ -1,5 +1,11 @@
 ####Firebase Cloud Messaging client written in Go
 
+[![License MIT](https://img.shields.io/npm/l/express.svg)](http://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/jimmy-go/fcm.svg?branch=master)](https://travis-ci.org/jimmy-go/fcm)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jimmy-go/fcm)](https://goreportcard.com/report/github.com/jimmy-go/fcm)
+[![GoDoc](http://godoc.org/github.com/jimmy-go/fcm?status.png)](http://godoc.org/github.com/jimmy-go/fcm)
+[![Coverage Status](https://coveralls.io/repos/github/jimmy-go/fcm/badge.svg?branch=master)](https://coveralls.io/github/jimmy-go/fcm?branch=master)
+
 #####Installation:
 ```
 go get gopkg.in/jimmy-go/fcm.v0
@@ -7,7 +13,16 @@ go get gopkg.in/jimmy-go/fcm.v0
 
 ####Usage:
 ```
-TODO;
+client, err := fcm.New(*key, timeout)
+// check errors...
+
+msg := fcm.NewMessage(*token)
+msg.TimeToLive = 25
+msg.Data.Add("title", "Title demo")
+msg.Data.Add("message", "Hello world! at: "+time.Now().Format(time.RFC3339))
+msg.Data.Add("some-var", 1)
+res, err := client.Send(msg)
+// check errors...
 ```
 
 #####License:
